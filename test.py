@@ -1,16 +1,33 @@
-print("Hello World")
+from rjn import RecJet
 
-# print("RJN script")
-# print("RJN run")
-# print(2+1)
+my_rjn = RecJet()
+my_rjn.insert_single_recipe('smoothie', 'tropical almond smoothie', {
+        'banana': 1.0,
+        'cup frozen pineapple': 0.5,
+        'cup frozen mango': 0.5,
+        'tbsp. almond butter': 1.0,
+        'cup coconut milk': 2.0,
+    })
 
-# a = 30.1
-# print(type(a))
 
-d = {
-    'tropical almond shake': 'https://b-m.facebook.com/PTSquaredLLC/photos/a.601421479929449/5439076966163852/?type=3&source=48',
-    'coconut curry noodles': 'http://the-cooking-of-joy.blogspot.com/2009/05/coconut-curry-noodles-with-collard.html',
-}
+my_rjn.insert_multiple_recipes(  [('smoothie',
+    'pinch of yum green smoothie',
+    {
+        'cup frozen mango': 1.0,
+        'cup frozen peaches': 0.5,
+        'cup chopped kale': 0.25,
+        'cup almond milk': 1.0,
+        'tsp. ground ginger': 1.0,
+        'tsp. honey': 1.0,
+    }),
+    ('dinner',
+    'steak salad',
+    {
+        'steak': 1.0,
+        'oz. spinach': 2.5,
+        'cup salad dressing': 0.25,
+    }),])
 
-print(d)
+for i in my_rjn.recipe_list:
+    print(i[2])
 

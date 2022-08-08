@@ -1,17 +1,36 @@
 import random
 
 class RecJet:
+
     def __init__(self):
-        print('initialization is happening')
-        self.recipesdict = {}
+        self.recipe_list = []
 
-    def add_item(self, itemname, itemlink):
-        self.recipesdict[itemname] = itemlink
+    def insert_single_recipe(self, category, name, ingredients):
+        # needs errors and exception handling
+        self.newrecipe = (category, name, ingredients)
+        self.recipe_list.append(self.newrecipe)
 
-myinst = RecJet()
-myinst.add_item(
-    itemname = 'tropical almond shake',
-    itemlink = 'https://b-m.facebook.com/PTSquaredLLC/photos/a.601421479929449/5439076966163852/?type=3&source=48',
-)
+    def insert_multiple_recipes(self, recipes):
+        # needs errors and exception handling
+        self.recipe_list.extend(recipes)
 
-print(myinst.recipesdict)
+    def insert_snack(self):
+        pass
+
+    def show_recipe_names(self):
+        pass
+
+    def show_all_names(self):
+        pass
+
+    def random_selection_shakes(self, num):
+        pass
+
+    def random_selection_dinners(self, num):
+        pass
+
+    def specific_selection_any(self):
+        pass
+
+    def generate_shopping_list(self):
+        pass
