@@ -4,6 +4,7 @@ class RecJet:
 
     def __init__(self):
         self.recipe_list = []
+        self.filtered_list = []
 
     def insert_single_recipe(self, category, name, ingredients):
         # needs errors and exception handling
@@ -18,7 +19,8 @@ class RecJet:
         pass
 
     def show_recipe_names(self):
-        pass
+        for x in self.recipe_list:
+            print(x[0], x[1])
 
     def show_all_names(self):
         pass
