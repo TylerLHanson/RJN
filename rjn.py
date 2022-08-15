@@ -20,7 +20,8 @@ class RecJet:
 
     def show_recipe_names(self):
         for x in self.recipe_list:
-            print(x[0], x[1])
+            if x[0] == "dinner" or x[0] == "smoothie":
+                print(x[0], x[1])
 
     def show_all_names(self):
         pass
