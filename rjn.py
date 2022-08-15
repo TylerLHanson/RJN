@@ -33,4 +33,12 @@ class RecJet:
         pass
 
     def generate_shopping_list(self):
-        pass
+        self.aggregated_list = {}
+        for x in self.recipe_list:
+            for a,b in x[2].items():
+                if a not in self.aggregated_list:
+                    self.aggregated_list[a] = b
+                else:
+                    self.aggregated_list[a] += b
+                    
+        return self.aggregated_list
