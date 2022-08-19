@@ -15,8 +15,8 @@ class RecJet:
         # needs errors and exception handling
         self.recipe_list.extend(recipes)
 
-    def insert_snack(self):
-        pass
+    def insert_snack(self, name):
+        self.recipe_list.append((name, name, {name: 1.0}))
 
     def show_recipe_names(self):
         for x in self.recipe_list:
@@ -24,13 +24,24 @@ class RecJet:
                 print(x[0], x[1])
 
     def show_all_names(self):
-        pass
+        for x in self.recipe_list:
+            print(x[1])
 
-    def random_selection_shakes(self, num):
-        pass
+    def random_selection_smoothies(self, num):
+        self.filtered_smoothies = [x for x in self.recipe_list if x[0] == "smoothie"]
+        self.filtered_smoothies = random.sample(self.filtered_smoothies, num)
+        # TODO add option parameter
+        self.filtered_list.extend(self.filtered_smoothies)
+        for x in self.filtered_smoothies:
+            print(x[1])
 
     def random_selection_dinners(self, num):
-        pass
+        self.filtered_dinners = [x for x in self.recipe_list if x[0] == "dinner"]
+        self.filtered_dinners = random.sample(self.filtered_dinners, num)
+        # TODO add option parameter
+        self.filtered_list.extend(self.filtered_dinners)
+        for x in self.filtered_dinners:
+            print(x[1])
 
     def specific_selection_any(self):
         pass
