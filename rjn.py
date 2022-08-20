@@ -5,6 +5,8 @@ class RecJet:
     def __init__(self):
         self.recipe_list = []
         self.filtered_list = []
+        self.filtered_dinners = []
+        self.filtered_smoothies = []
 
     def insert_single_recipe(self, category, name, ingredients):
         # needs errors and exception handling
@@ -43,8 +45,11 @@ class RecJet:
         for x in self.filtered_dinners:
             print(x[1])
 
-    def specific_selection_any(self):
-        pass
+    def specific_selection_any(self, *args):
+        for x in self.recipe_list:
+            if x[1] in args:
+                self.filtered_dinners.append(x)
+        self.filtered_list.extend(self.filtered_dinners)
 
     def generate_shopping_list(self):
         self.aggregated_list = {}
