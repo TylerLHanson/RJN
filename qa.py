@@ -1,15 +1,33 @@
 import ccxt
-print(ccxt.exchanges)
+import local_config
 
-kucoin = ccxt.kucoin({
-    'apikey': 'xxxx'
+# for x in ccxt.exchanges:
+#     print(x)
+
+exchange = ccxt.kucoin({
+    'apiKey': local_config.KUCOIN_API_KEY,
+    'secret': local_config.KUCOIN_SECRET_KEY,
+    'password': local_config.KUCOIN_PASSPHRASE,
 })
 
-print(kucoin)
+# markets = exchange.load_markets()
 
-symbol = 'BTC-USDT'
-timeframe = '15m'
-limit = 500
+# for x in markets:
+#     print(x)
 
-bars = kucoin.fetch_ohlcv(symbol, timeframe=timeframe, limit=limit)
-print(bars)
+# Horizen
+# ticker = exchange.fetch_ticker('ZEN/USDT')
+# print(ticker)
+
+# ohlc = exchange.fetch_ohlcv('ETH/USDT', timeframe='1d', limit=5)
+# print(ohlc)
+
+# for candle in ohlc:
+#     print(candle)
+
+# order_book = exchange.fetch_order_book('ETH/USDT')
+# print(order_book)
+
+balance = exchange.fetch_balance()
+print(balance)
+# 19:00
