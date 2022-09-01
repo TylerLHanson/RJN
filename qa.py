@@ -1,14 +1,15 @@
 import ccxt
 import local_config
+import requests
 
 # for x in ccxt.exchanges:
 #     print(x)
 
-exchange = ccxt.kucoin({
-    'apiKey': local_config.KUCOIN_API_KEY,
-    'secret': local_config.KUCOIN_SECRET_KEY,
-    'password': local_config.KUCOIN_PASSPHRASE,
-})
+# exchange = ccxt.kucoin({
+#     'apiKey': local_config.KUCOIN_API_KEY,
+#     'secret': local_config.KUCOIN_SECRET_KEY,
+#     'password': local_config.KUCOIN_PASSPHRASE,
+# })
 
 # markets = exchange.load_markets()
 
@@ -28,6 +29,13 @@ exchange = ccxt.kucoin({
 # order_book = exchange.fetch_order_book('ETH/USDT')
 # print(order_book)
 
-balance = exchange.fetch_balance()
-print(balance)
+# balance = exchange.fetch_balance()
+# print(balance)
 # 19:00
+
+
+c = requests.get("https://api.opensea.io/api/v1/collections")
+print(c.json())
+
+b = requests.get("https://api.opensea.io/api/v1/collections")
+print(b.json())
