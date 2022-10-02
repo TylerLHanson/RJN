@@ -2,6 +2,19 @@ import ccxt
 import local_config
 import requests
 
+
+# Sch PTL - TA Lib PT
+
+
+
+
+
+
+
+
+
+
+
 # for x in ccxt.exchanges:
 #     print(x)
 
@@ -11,13 +24,26 @@ import requests
 #     'password': local_config.KUCOIN_PASSPHRASE,
 # })
 
-exchange = ccxt.coinbaseprime()
+exchange = ccxt.coinbasepro()
 
 markets = exchange.load_markets()
+# print(markets)
 
+assets = {}
 for x in markets:
-    print(x)
-# https://exchange.coinbase.com/markets
+    pairs = x.split('/')
+    print(pairs[0])
+    print(pairs[1])
+
+
+
+
+
+
+
+
+
+
 
 
 # Horizen
@@ -35,7 +61,7 @@ for x in markets:
 
 # balance = exchange.fetch_balance()
 # print(balance)
-# 19:00
+# # 19:00
 
 
 # c = requests.get("https://api.opensea.io/api/v1/collections")
