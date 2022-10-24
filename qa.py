@@ -29,13 +29,15 @@ exchange = ccxt.coinbasepro()
 markets = exchange.load_markets()
 # print(markets)
 
-assets = {}
+assets = []
 for x in markets:
     pairs = x.split('/')
-    print(pairs[0])
-    print(pairs[1])
+    assets.append(pairs[0])
+    # print(pairs[0])
+    # print(pairs[1])
 
-
+for x in set(assets):
+    print(x)
 
 
 
