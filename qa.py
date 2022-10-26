@@ -36,10 +36,20 @@ for x in markets:
     # print(pairs[0])
     # print(pairs[1])
 
-for x in set(assets):
+# for x in sorted(set(assets)):
+#     print(x)
+
+for x in sorted(markets):
     print(x)
 
+# ohlc = exchange.fetch_ohlcv('ETH/USDT', timeframe='1d', limit=5)
+# print(ohlc)
 
+p00ls = exchange.fetch_ohlcv('00/USD', timeframe='1d', limit=5)
+print(p00ls)
+
+for candle in p00ls:
+    print(candle)
 
 
 
@@ -51,12 +61,6 @@ for x in set(assets):
 # Horizen
 # ticker = exchange.fetch_ticker('ZEN/USDT')
 # print(ticker)
-
-# ohlc = exchange.fetch_ohlcv('ETH/USDT', timeframe='1d', limit=5)
-# print(ohlc)
-
-# for candle in ohlc:
-#     print(candle)
 
 # order_book = exchange.fetch_order_book('ETH/USDT')
 # print(order_book)
