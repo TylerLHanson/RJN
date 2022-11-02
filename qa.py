@@ -1,9 +1,9 @@
 import ccxt
 import local_config
 import requests
+import ta
+from ta.volatility import BollingerBands
 
-
-# Sch PTL - TA Lib PT
 
 
 
