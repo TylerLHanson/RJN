@@ -1,8 +1,27 @@
 import ccxt
 import local_config
+import pandas as pd
 import requests
 import ta
-from ta.volatility import BollingerBands
+from ta.volatility import BollingerBands, AverageTrueRange
+
+
+exchange = ccxt.coinbasepro()
+
+bars = exchange.fetch_ohlcv('ETH/USDT', limit=20)
+
+# for bar in bars:
+#     print(bar)
+
+
+# timestamp
+# https://www.unixtimestamp.com/
+
+df = pd.DataFrame(bars, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+print(df)
+
+# https://github.com/bukosabino/ta/blob/7ffda486d574fcb5e8f6426a4d92cd115d17b7cf/ta/volatility.py#L67
+# bb_indicator = BollingerBands()
 
 
 
@@ -11,9 +30,7 @@ from ta.volatility import BollingerBands
 
 
 
-
-
-
+# ----------------------------------------------------------------------------
 
 # for x in ccxt.exchanges:
 #     print(x)
@@ -24,32 +41,31 @@ from ta.volatility import BollingerBands
 #     'password': local_config.KUCOIN_PASSPHRASE,
 # })
 
-exchange = ccxt.coinbasepro()
 
-markets = exchange.load_markets()
+# markets = exchange.load_markets()
 # print(markets)
 
-assets = []
-for x in markets:
-    pairs = x.split('/')
-    assets.append(pairs[0])
-    # print(pairs[0])
-    # print(pairs[1])
+# assets = []
+# for x in markets:
+#     pairs = x.split('/')
+#     assets.append(pairs[0])
+#     # print(pairs[0])
+#     # print(pairs[1])
 
 # for x in sorted(set(assets)):
 #     print(x)
 
-for x in sorted(markets):
-    print(x)
+# for x in sorted(markets):
+#     print(x)
 
 # ohlc = exchange.fetch_ohlcv('ETH/USDT', timeframe='1d', limit=5)
 # print(ohlc)
 
-p00ls = exchange.fetch_ohlcv('00/USD', timeframe='1d', limit=5)
-print(p00ls)
+# p00ls = exchange.fetch_ohlcv('00/USD', timeframe='1d', limit=5)
+# print(p00ls)
 
-for candle in p00ls:
-    print(candle)
+# for candle in p00ls:
+#     print(candle)
 
 
 
