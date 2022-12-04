@@ -1,5 +1,5 @@
 import ccxt
-import local_config
+# import local_config
 import pandas as pd
 import requests
 import ta
@@ -8,7 +8,7 @@ from ta.volatility import BollingerBands, AverageTrueRange
 
 exchange = ccxt.coinbasepro()
 
-bars = exchange.fetch_ohlcv('ETH/USDT', limit=20)
+bars = exchange.fetch_ohlcv('ETH/USDT', limit=40)
 
 # for bar in bars:
 #     print(bar)
@@ -18,16 +18,18 @@ bars = exchange.fetch_ohlcv('ETH/USDT', limit=20)
 # https://www.unixtimestamp.com/
 
 df = pd.DataFrame(bars, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
-print(df)
 
 # https://github.com/bukosabino/ta/blob/7ffda486d574fcb5e8f6426a4d92cd115d17b7cf/ta/volatility.py#L67
 # bb_indicator = BollingerBands()
 
 
 
-#test
+atr_indicator = AverageTrueRange(df['high'], df['low'], df['close'])
+df['atr'] = atr_indicator.average_true_range()
+print(df)
 
-
+#fbcwpap
+#
 
 
 # ----------------------------------------------------------------------------
