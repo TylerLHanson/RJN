@@ -6,34 +6,20 @@ import ta
 from ta.volatility import BollingerBands, AverageTrueRange
 
 
-exchange = ccxt.coinbasepro()
+# -------------------------------------------------------------------------------------------------------
+# c = requests.get("https://api.opensea.io/api/v1/collections")
+# print(c.json())
 
-bars = exchange.fetch_ohlcv('ETH/USDT', limit=40)
-
-# for bar in bars:
-#     print(bar)
+# b = requests.get("https://api.opensea.io/api/v1/collections")
+# print(b.json())
 
 
-# timestamp
-# https://www.unixtimestamp.com/
-
-df = pd.DataFrame(bars, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
-
+# -------------------------------------------------------------------------------------------------------
 # https://github.com/bukosabino/ta/blob/7ffda486d574fcb5e8f6426a4d92cd115d17b7cf/ta/volatility.py#L67
 # bb_indicator = BollingerBands()
 
 
-
-atr_indicator = AverageTrueRange(df['high'], df['low'], df['close'])
-df['atr'] = atr_indicator.average_true_range()
-print(df)
-
-#fbcwpap
-#
-
-
-# ----------------------------------------------------------------------------
-
+# -------------------------------------------------------------------------------------------------------
 # for x in ccxt.exchanges:
 #     print(x)
 
@@ -42,7 +28,6 @@ print(df)
 #     'secret': local_config.KUCOIN_SECRET_KEY,
 #     'password': local_config.KUCOIN_PASSPHRASE,
 # })
-
 
 # markets = exchange.load_markets()
 # print(markets)
@@ -60,37 +45,15 @@ print(df)
 # for x in sorted(markets):
 #     print(x)
 
-# ohlc = exchange.fetch_ohlcv('ETH/USDT', timeframe='1d', limit=5)
-# print(ohlc)
+exchange = ccxt.coinbasepro()
 
-# p00ls = exchange.fetch_ohlcv('00/USD', timeframe='1d', limit=5)
-# print(p00ls)
+bars = exchange.fetch_ohlcv('BTC/USDT', limit=40)
 
-# for candle in p00ls:
-#     print(candle)
+# for bar in bars:
+#     print(bar)
 
+df = pd.DataFrame(bars, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
 
-
-
-
-
-
-
-# Horizen
-# ticker = exchange.fetch_ticker('ZEN/USDT')
-# print(ticker)
-
-# order_book = exchange.fetch_order_book('ETH/USDT')
-# print(order_book)
-
-# balance = exchange.fetch_balance()
-# print(balance)
-# # 19:00
-
-
-# c = requests.get("https://api.opensea.io/api/v1/collections")
-# print(c.json())
-
-# b = requests.get("https://api.opensea.io/api/v1/collections")
-# print(b.json())
-
+atr_indicator = AverageTrueRange(df['high'], df['low'], df['close'])
+df['atr'] = atr_indicator.average_true_range()
+print(df)
