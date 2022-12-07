@@ -1,6 +1,7 @@
 import ccxt
 # import local_config
 import pandas as pd
+import numpy as np
 import requests
 import ta
 from ta.volatility import BollingerBands, AverageTrueRange
@@ -15,7 +16,6 @@ from ta.volatility import BollingerBands, AverageTrueRange
 
 
 # -------------------------------------------------------------------------------------------------------
-# https://github.com/bukosabino/ta/blob/7ffda486d574fcb5e8f6426a4d92cd115d17b7cf/ta/volatility.py#L67
 # bb_indicator = BollingerBands()
 
 
@@ -53,7 +53,19 @@ bars = exchange.fetch_ohlcv('BTC/USDT', limit=40)
 #     print(bar)
 
 df = pd.DataFrame(bars, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
 
-atr_indicator = AverageTrueRange(df['high'], df['low'], df['close'])
+
+# https://github.com/bukosabino/ta/blob/7ffda486d574fcb5e8f6426a4d92cd115d17b7cf/ta/volatility.py#L14
+atr_indicator = AverageTrueRange(df['high'], df['low'], df['close'], fillna=False)
 df['atr'] = atr_indicator.average_true_range()
+df['atr'].replace(0, np.nan, inplace=True)
+
+# df['previous_close'] = df['close'].shift(1)
+
+def supertrend(df, period=7, multiplier=3):
+    df['basic_upperband'] = ((df['high'] + df['low']) / 2) + (multiplier * df['atr'])
+    df['basic_lowerband'] = ((df['high'] + df['low']) / 2) - (multiplier * df['atr'])
+
+supertrend(df)
 print(df)
