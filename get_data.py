@@ -17,7 +17,9 @@ from ta.volatility import BollingerBands, AverageTrueRange
 # def fetch_ohlcv
 
 exchange = ccxt.kucoin()
-bars = exchange.fetch_ohlcv('BTC/USDT', limit=40)
+bars = exchange.fetch_ohlcv('BTC/USDT', limit=40, 
+   since=1673305339262
+    )
 print(bars)
 
 
