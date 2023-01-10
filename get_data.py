@@ -17,36 +17,32 @@ from ta.volatility import BollingerBands, AverageTrueRange
 # def fetch_ohlcv
 
 exchange = ccxt.kucoin()
-bars = exchange.fetch_ohlcv('BTC/USDT', limit=40, 
-   since=1673305339262
+candlestick_data = exchange.fetch_ohlcv('BTC/USDT', limit=1500,
+  # needs milli (below ex. tho)
+  # since=1673305339262
     )
-print(bars)
-
-
-
-
-
-
-
-
-# opensea
-# -------------------------------------------------------------------------------------------------------
-# c = requests.get("https://api.opensea.io/api/v1/collections")
-# print(c.json())
-
-# b = requests.get("https://api.opensea.io/api/v1/collections")
-# print(b.json())
-
-
-# averagetruerange
-# -------------------------------------------------------------------------------------------------------
-
 # exchange = ccxt.kucoin({
 #     'apiKey': local_config.KUCOIN_API_KEY,
 #     'secret': local_config.KUCOIN_SECRET_KEY,
 #     'password': local_config.KUCOIN_PASSPHRASE,
 # })
 
+
+
+df = pd.DataFrame(candlestick_data, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+# https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html
+df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
+# just shave off 3 0's for s
+print(df)
+
+# min 
+
+
+
+
+
+
+# ------------------------------------------------------------------------------------------
 # markets = exchange.load_markets()
 # print(markets)
 
@@ -66,7 +62,6 @@ print(bars)
 
 
 
-
 # averagetruerange
 # https://github.com/bukosabino/ta/blob/master/ta/volatility.py
 
@@ -74,9 +69,6 @@ print(bars)
 
 # # for bar in bars:
 # #     print(bar)
-
-# df = pd.DataFrame(bars, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
-# df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
 
 
 # atr_indicator = AverageTrueRange(df['high'], df['low'], df['close'], fillna=False)
