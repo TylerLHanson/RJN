@@ -34,6 +34,7 @@ df = pd.DataFrame(candlestick_data, columns=['timestamp', 'open', 'high', 'low',
 df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
 # just shave off 3 0's for s
 print(df)
+# CREATE THE MOST BASIC VISUAL WITHIN VS CODE
 
 # min 
 
